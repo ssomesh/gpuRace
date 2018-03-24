@@ -22,7 +22,7 @@
 
 using namespace std;
 
-/*Method to populate a matrix of 5 X 5 with random integers from the range [0,100) */
+/*Method to populate a matrix of 5 X 5 with random integers in the range [0,100) */
 void fill_matrix(Kokkos::View<float[5][5]>& A) {
   const int LIMIT = 100;
   struct timeval Tv;
@@ -40,7 +40,7 @@ void fill_matrix(Kokkos::View<float[5][5]>& A) {
 /*Method to display a 5 X 5 matrix*/
 
 void print_matrix(Kokkos::View<float[5][5]>& A) {
-  cout << setiosflags(ios::fixed) << setprecision(4);
+  cout << setiosflags(ios::fixed) << setprecision(4); // printing till 4 places after decimal
   for(int i=0; i<5; ++i) {
     for(int j=0; j<5; ++j)
       cout << A(i,j) << "\t";
