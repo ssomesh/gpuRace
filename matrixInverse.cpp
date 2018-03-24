@@ -1,6 +1,6 @@
 
 /**********************************************************************************
- *  This program computes the inverse of a 5X5 matrix using the  LU Decomposition *
+ *  This program computes the inverse of a 5 X 5 matrix using the  LU Decomposition *
  *  mathod.                                                                       *
  *                                                                                *
  *  The input matrix is modified and holds the inverse of the original matrix     *
@@ -38,7 +38,6 @@ void fill_matrix(Kokkos::View<float[5][5]>& A) {
 }
 
 /*Method to display a 5 X 5 matrix*/
-
 void print_matrix(Kokkos::View<float[5][5]>& A) {
   cout << setiosflags(ios::fixed) << setprecision(4); // printing till 4 places after decimal
   for(int i=0; i<5; ++i) {
@@ -48,6 +47,7 @@ void print_matrix(Kokkos::View<float[5][5]>& A) {
   }
 }
 
+/*Method to compute the inverse of a 5x5 matrix */
 void matrixInverse(Kokkos::View<float[5][5]>& A) {
 
   // Implementation by LU decomposition
