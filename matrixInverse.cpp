@@ -18,6 +18,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <sys/time.h>
+#include <omp.h>
 #include "Kokkos_Core.hpp"
 
 using namespace std;
@@ -59,11 +60,12 @@ void matrixInverse(Kokkos::View<float[5][5]>& A) {
   for (int i = 1; i < 5; ++i) {
     A(0,i) /= A(0,0);
   }
-
-  for (int i = 1; i < 5; ++i) {
-    for (int j = i; j < 5; ++j) {
-      float sum = 0.0;
-      for (int k = 0; k < i; ++k) {
+float sum; int i,j,k;
+ //#pragma omp parallel //for private(i, j, k) shared(A) reduction(+:sum)
+  for (i = 1; i < 5; ++i) {
+    for (j = i; j < 5; ++j) {
+      sum = 0.0;
+      for (k = 0; k < i; ++k) {
         sum += A(j,k) * A(k,i);
       }
       A(j,i) -= sum;
@@ -135,7 +137,10 @@ void matrixInverse(Kokkos::View<float[5][5]>& A) {
 
 int main(int argc, char* argv[]) {
 
-  Kokkos::initialize(argc, argv);
+  //Kokkos::initialize(argc, argv);
+  Kokkos::InitArguments args;
+  args.num_threads = 8;
+  Kokkos::initialize(args);
   Kokkos::View<float[5][5]> A("A"); // declaring an array of floats having dimensions 5 X 5.
 
   // Testcases with predefined matrices
@@ -241,6 +246,6 @@ int main(int argc, char* argv[]) {
     cout << "---------------------------XX-----------------------" << endl << endl;
   }
   //  populate the matrix
-  Kokkos::finalize();
+//  Kokkos::finalize();
   return 0;
 }

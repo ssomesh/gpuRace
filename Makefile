@@ -12,7 +12,7 @@ EXE = ${EXE_NAME}.host
 KOKKOS_ARCH = "SNB"
 #KOKKOS_ARCH = "SKX"
 
-CXXFLAGS = -O3
+CXXFLAGS = -O3 -fopenmp
 LINK = ${CXX}
 LINKFLAGS =
 
