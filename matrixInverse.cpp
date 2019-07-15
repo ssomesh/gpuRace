@@ -1,7 +1,7 @@
 
 /**********************************************************************************
  *  This program computes the inverse of a 5 X 5 matrix using the  LU Decomposition *
- *  mathod.                                                                       *
+ *  method.                                                                       *
  *                                                                                *
  *  The input matrix is modified and holds the inverse of the original matrix     *
  *   at the end of the program. No other array is used in the implementation.     *
